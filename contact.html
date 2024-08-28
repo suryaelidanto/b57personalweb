@@ -52,22 +52,25 @@
       </ul>
     </nav>
 
-    <form style="display: flex; flex-direction: column; gap: 10px">
-      <input placeholder="Enter your name..." />
-      <input placeholder="Enter your email..." />
-      <input placeholder="Enter your phone number..." />
-      <select>
-        <option>Select an option</option>
-        <option>Frontend Developer</option>
-        <option>Backend Developer</option>
-        <option>Fullstack Developer</option>
+    <form onsubmit="sendEmail(event)" style="display: flex; flex-direction: column; gap: 10px">
+      <input id="name" placeholder="Enter your name..." />
+      <input id="email" placeholder="Enter your email..." />
+      <input id="phoneNumber" placeholder="Enter your phone number..." />
+      <select id="subject">
+        <option value="">Select an Option</option>
+        <option value="Frontend Developer">Frontend Developer</option>
+        <option value="Backend Developer">Backend Developer</option>
+        <option value="Fullstack Developer">Fullstack Developer</option>
       </select>
       <textarea
+        id="message"
         cols="30"
         rows="4"
         placeholder="Enter your message..."
       ></textarea>
       <input type="submit" value="Submit" />
     </form>
+
+    <script src="assets/js/contact.js"></script>
   </body>
 </html>
