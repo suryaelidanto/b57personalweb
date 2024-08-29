@@ -10,46 +10,71 @@
         margin: 0;
       }
     </style>
+    <link rel="stylesheet" href="assets/css/nav.css" />
+    <link rel="stylesheet" href="assets/css/blog.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
   </head>
   <body>
     <nav>
-      <ul
-        style="
-          padding: 20px;
-          background-color: gray;
-          list-style-type: none;
-          display: flex;
-          flex-direction: row;
-          gap: 20px;
-          align-items: center;
-        "
-      >
+      <ul class="navbar-container">
         <li>
           <img
             src="https://dumbways.id/assets/images/brandred.png"
-            style="width: 50px; height: 25px; object-fit: contain"
+            class="navbar-logo"
           />
         </li>
         <li>
-          <a href="index.html" style="text-decoration: none"> Home </a>
+          <a href="index.html" class="navbar-link"> Home </a>
         </li>
         <li>
-          <a href="blog.html" style="text-decoration: none"> Blog </a>
+          <a href="blog.html" class="navbar-link"> Blog </a>
         </li>
-        <li style="display: flex; width: 100%; justify-content: flex-end">
-          <a
-            href="contact.html"
-            style="
-              background-color: orangered;
-              padding: 20px;
-              color: white;
-              border-radius: 10px;
-              text-decoration: none;
-            "
-            >Contact Me</a
-          >
+        <li class="navbar-right">
+          <a href="contact.html" class="navbar-contact-button">Contact Me</a>
         </li>
       </ul>
     </nav>
+
+    <div class="blog">
+      <div class="blog-form">
+        <div class="form-container">
+          <form onsubmit="addBlog(event)">
+            <h1>Create Post Blog</h1>
+            <div>
+              <label for="input-blog-title">Title</label>
+              <input id="input-blog-title" />
+            </div>
+            <div>
+              <label for="input-blog-content">Content</label>
+              <textarea id="input-blog-content"></textarea>
+            </div>
+            <div>
+              <label>Upload Image</label>
+              <div class="input-blog-image-group">
+                <label for="input-blog-image">
+                  <p>Attach File</p>
+                  <i class="fa-solid fa-paperclip"></i>
+                </label>
+                <input type="file" id="input-blog-image" hidden />
+              </div>
+            </div>
+            <div class="button-group">
+              <button type="submit">Post Blog</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <hr class="line" />
+      <div id="contents" class="blog-list">
+        <!-- dynamic content would be here -->
+        
+      </div>
+    </div>
+
+    <script src="assets/js/blog.js"></script>
   </body>
 </html>
