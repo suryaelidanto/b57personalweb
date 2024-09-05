@@ -38,6 +38,8 @@
     />
   </head>
   <body>
+    <script src="assets/js/ajax.js"></script>
+
     <nav>
       <ul
         style="
@@ -84,14 +86,29 @@
         <h2>Rating By Star</h2>
         <div class="rating">
           <div id="button-ratings">
-            
+            <button onclick="getAllTestimonials()" class="rating-btn">
+              All
+            </button>
+            <button onclick="getTestimonialsByRating(1)" class="rating-btn">
+              1 <i class="fa-solid fa-star"></i>
+            </button>
+            <button onclick="getTestimonialsByRating(2)" class="rating-btn">
+              2 <i class="fa-solid fa-star"></i>
+            </button>
+            <button onclick="getTestimonialsByRating(3)" class="rating-btn">
+              3 <i class="fa-solid fa-star"></i>
+            </button>
+            <button onclick="getTestimonialsByRating(4)" class="rating-btn">
+              4 <i class="fa-solid fa-star"></i>
+            </button>
+            <button onclick="getTestimonialsByRating(5)" class="rating-btn">
+              5 <i class="fa-solid fa-star"></i>
+            </button>
           </div>
         </div>
       </div>
 
       <section class="testimonials" id="testimonials"></section>
     </div>
-
-    <script src="assets/js/testimonial-new.js"></script>
   </body>
 </html>
