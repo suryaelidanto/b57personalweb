@@ -27,14 +27,14 @@ function getDistanceTime(timePost) {
   const hours = Math.floor(minutes / 60);
   const day = Math.floor(hours / 24);
 
-  if(seconds < 60) {
-    return `${seconds} seconds ago`
+  if (seconds < 60) {
+    return `${seconds} seconds ago`;
   } else if (minutes < 60) {
-    return `${minutes} minutes ago`
-  } else if(hours < 60) {
-    return `${hours} hours ago`
-  } else if(day < 24) {
-    return `${day} day ago`
+    return `${minutes} minutes ago`;
+  } else if (hours < 60) {
+    return `${hours} hours ago`;
+  } else if (day < 24) {
+    return `${day} day ago`;
   }
 }
 
@@ -65,6 +65,8 @@ function addBlog(event) {
   const inputContent = document.getElementById("input-blog-content").value;
   const inputImage = document.getElementById("input-blog-image").files;
 
+  console.log("test", inputTitle, inputContent, inputImage);
+
   const blobImage = URL.createObjectURL(inputImage[0]);
 
   const data = {
@@ -85,36 +87,37 @@ function renderBlog() {
   let html = "";
 
   for (let index = 0; index < blogs.length; index++) {
-    html += `<div class="blog-list-item">
-                <div class="blog-image">
-                    <img src="${blogs[index].image}" alt="" />
-                </div>
-                <div class="blog-content">
-                    <div class="btn-group">
-                        <button class="btn-edit">Edit Post</button>
-                        <button class="btn-post">Delete Post</button>
-                    </div>
-                    <h1>
-                        <a href="blog-detail.html" target="_blank">${blogs[index].title}</a>
-                    </h1>
-                    <div class="detail-blog-content">
-                        ${getFullTime(blogs[index].createdAt)} | ${blogs[index].author}
-                    </div>
-                    <p>
-                        ${blogs[index].content}
-                    </p>
-                    <p>
-                      ${getDistanceTime(blogs[index].createdAt)}
-                    </p>
-                </div>
+    html += `<div class="card mt-5">
+        <div class="d-flex p-3">
+          <img
+            src="${blogs[index].image}"
+            class="card-img-top"
+            style="width: 300px"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title">${blogs[index].title}</h5>
+            <div class="d-flex">
+              <p class="card-text">${getFullTime(blogs[index].createdAt)}</p>
+              <p class="card-text mx-2">|</p>
+              <p class="card-text">${blogs[index].author}</p>
             </div>
+            <p class="card-text">${blogs[index].content}</p>
+
+            <p class="card-text">${getDistanceTime(blogs[index].createdAt)}</p>
+          </div>
+          <div class="card-body">
+            <button href="#" class="btn btn-secondary">Edit Post</button>
+            <button href="#" class="btn btn-primary">Delete Post</button>
+          </div>
+        </div>
+      </div>
             `;
   }
 
   document.getElementById("contents").innerHTML = html;
 }
 
-
 setInterval(() => {
   renderBlog();
-}, 1000)
+}, 1000);
