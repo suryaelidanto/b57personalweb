@@ -1,23 +1,18 @@
-// janji untuk bayar hutang
+const janji = new Promise((resolve, reject) => {
+  const isPay = false;
 
-const bayarHutang = new Promise((resolve, reject) => {
-  const sudahBayarHutang = false;
+  if (isPay) return resolve("Sudah bayar hutang!");
 
-  if (sudahBayarHutang) {
-    resolve("Yeay kamu sudah bayar hutang, kamu keren!");
-  } else {
-    reject("Hey, kamu belum bayar hutang!");
-  }
+  reject("Galbay hutang!");
 });
 
-async function jalankanBayarHutang() {
+const runJanji = async () => {
   try {
-    const response = await bayarHutang;
+    const response = await janji;
     console.log(response);
   } catch (error) {
-    console.log(error);
-    alert(error);
+    console.log("GAGAL : ", error);
   }
-}
+};
 
-jalankanBayarHutang();
+runJanji();

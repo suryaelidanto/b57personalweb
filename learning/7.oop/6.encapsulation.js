@@ -1,26 +1,21 @@
-class Invoice {
-  #price = 0;
+class Invoice { // access modifier + proteksi properti dan method 
+    #price = 0
 
-  set price(value) {
-    if (value <= 0) {
-      throw new Error(`Value cannot <= 0 | your value : ${value}`);
+    static name = "surya"
+
+    set price(value) {
+        if(value < 1) {
+            throw new Error("Value cannot <= 0")
+        }
+
+        this.#price = value
     }
 
-    this.#price = value;
-  }
-
-  get price() {
-    return this.#price;
-  }
-
-  #test() {
-    console.log("testing")
-  }
-
-  testlagi() {
-    this.#test()
-  }
+    get price() {
+        return this.#price
+    }
 }
 
-const invoice = new Invoice();
-invoice.testlagi()
+const struk = new Invoice()
+struk.price = 100
+console.log(struk.price)

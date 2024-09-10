@@ -1,5 +1,2 @@
-# b57personalweb
-
-Ini adalah project personal website pertama saya :D
-
-asodkaosdkoask
+# B57-personal-web
+Ini adalah project website pertama saya belajar di Dumbways.ID

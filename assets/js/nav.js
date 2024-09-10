@@ -1,4 +1,5 @@
 function toggleHamburger() {
-    const element = document.getElementById("hamburger-container")
-    element.classList.toggle("hamburger-hide")
+  const hamburger = document.querySelector(".hamburger-container");
+
+  hamburger.classList.toggle("hide");
 }

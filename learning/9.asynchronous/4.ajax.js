@@ -1,13 +1,15 @@
 const xhr = new XMLHttpRequest()
 
-xhr.open("GET", "https://api.npoint.io/325670a0ea8fb06fe0df", true)
+// CRUD => CREATE, READ, UPDATE, DELETE
+
+xhr.open("GET", "https://api.npoint.io/866829d0e4851e873f3a", true) 
 
 xhr.onerror = () => {
-  console.log("Network Error!")
+    console.log("Network error!")
 }
 
 xhr.onload = () => {
-  console.log(xhr.response)
+    console.log(xhr.response)
 }
 
 xhr.send()

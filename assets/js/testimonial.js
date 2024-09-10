@@ -1,53 +1,71 @@
-class Testimonial {
-  image = "";
-  content = "";
-  author = "";
-  rating = 0;
+const testimonials = [
+  {
+    image:
+      "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600",
+    content: "Mantap sekali jasanya!",
+    author: "Jimih Setiawan",
+    rating: 1,
+  },
+  {
+    image:
+      "https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=600",
+    content: "Keren kamu bro!",
+    author: "Adika Wahyu Sulaiman",
+    rating: 2,
+  },
+  {
+    image:
+      "https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=600",
+    content: "Keren mantap!",
+    author: "Adika Wahyu Lagi",
+    rating: 2,
+  },
+  {
+    image:
+      "https://images.pexels.com/photos/1300402/pexels-photo-1300402.jpeg?auto=compress&cs=tinysrgb&w=600",
+    content: "Apasih bang!",
+    author: "Almas Fadhillah",
+    rating: 3,
+  },
+];
 
-  constructor(image, content, author, rating) {
-    this.image = image;
-    this.content = content;
-    this.author = author;
-    this.rating = rating;
+function allTestimonial() {
+  if (!testimonials.length) {
+    return (document.getElementById("testimonials").innerHTML =
+      `<h1>Data not found!</h1>`);
   }
 
-  getHTML() {
+  const testimonialHTML = testimonials.map((testimonial) => {
     return `<div class="testimonial">
-        <img src="${this.image}" class="profile-testimonial" />
-        <p class="quote">"${this.content}"</p>
-        <p class="author">- ${this.author}</p>
-        <p class="author">${this.rating}$</p>
-    </div>`;
+                <img src="${testimonial.image}" class="profile-testimonial" />
+                <p class="quote">"${testimonial.content}"</p>
+                <p class="author">- ${testimonial.author}</p>
+            </div>`;
+  });
+
+  document.getElementById("testimonials").innerHTML = testimonialHTML.join("");
+}
+
+function filterTestimonial(rating) {
+  // 2
+  const filteredTestimonial = testimonials.filter(
+    (testimonial) => testimonial.rating == rating
+  );
+
+  if (!filteredTestimonial.length) {
+    return (document.getElementById("testimonials").innerHTML =
+      `<h1>Data not found!</h1>`);
   }
+
+  const testimonialHTML = filteredTestimonial.map((testimonial) => {
+    return `<div class="testimonial">
+                    <img src="${testimonial.image}" class="profile-testimonial" />
+                    <p class="quote">"${testimonial.content}"</p>
+                    <p class="author">- ${testimonial.author}</p>
+                </div>`;
+  });
+
+  document.getElementById("testimonials").innerHTML = testimonialHTML.join("");
 }
 
-const testimonial1 = new Testimonial(
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL5m2gr2lMb1huhMFwIR41jrDU5ZOxKydgEw&s",
-  "Dattebayo",
-  "Naruto",
-  5
-);
-
-const testimonial2 = new Testimonial(
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFo9nKGI6eDtfB7wVLiJ0voKBJJb5nrJj9Wg&s",
-  "Tch",
-  "Sasuke",
-  1
-);
-
-const testimonial3 = new Testimonial(
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0MBAh1_8sj6rA6QhH31iBkhG2v7rLce4OSQ&s",
-  "Beban",
-  "Sakura",
-  3
-);
-
-const testimonials = [testimonial1, testimonial2, testimonial3]
-
-let testimonialHTML = ``
-
-for(let index = 0; index < testimonials.length; index++) {
-    testimonialHTML += testimonials[index].getHTML()
-}
-
-document.getElementById("testimonials").innerHTML = testimonialHTML
+allTestimonial();

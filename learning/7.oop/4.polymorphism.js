@@ -1,27 +1,26 @@
 class Animal {
-  speak() {
-    console.log("Please define a class (Duck/Dog/Cat) to speak!");
-  }
+    speak() {
+        console.log("Please define an animal to speak!")
+    }
 }
 
-class Duck extends Animal {
-  speak() {
-    // overriding / menimpa
-    console.log("Quack!");
-  }
+class Duck extends Animal { // override an extending classes (menimpa)   
+    speak() {
+        console.log("Qwack!")
+    }
 }
 
 class Dog extends Animal {
-  speak() {
-    console.log("Whoof!");
-  }
+    speak() {
+        console.log("Whoof!")
+    }
 }
 
 class Cat extends Animal {
-  speak() {
-    console.log("Miaw!");
-  }
+    speak() {
+        console.log("Miaw!")
+    }
 }
 
-const animal = new Cat();
-animal.speak();
+const duck = new Duck()
+console.log(duck.name)

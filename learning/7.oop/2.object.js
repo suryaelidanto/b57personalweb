@@ -1,34 +1,38 @@
-class Dog {
-  color = "";
-  eyeColor = "";
-  height = 0;
-  length = 0;
-  weigth = 0;
+class Dog { // pascal case
+    // properties
+   name = ""
+   color = ""
+   eyeColor = ""
+   height = 0
+   length = 0
+   weight = 0
 
-  constructor(color, eyeColor, height, length, weigth) {
-    this.color = color;
-    this.eyeColor = eyeColor;
-    this.height = height;
-    this.length = length;
-    this.weigth = weigth;
-  }
+    constructor(name, color, eyeColor, height, length, weight) {
+        this.name = name
+        this.color = color
+        this.eyeColor = eyeColor
+        this.height = height
+        this.length = length
+        this.weight = weight
+    }
 
-  sit() {
-    console.log(`Dog with color ${this.color}, is running!`);
-  }
+    // methods
+    sit() {
+        console.log(`${this.name} is sitting`)
+    }
 
-  layDown() {
-    console.log(`Dog with height ${this.height}, is laying down!`);
-  }
+    layDown() {
+        console.log(`${this.name} is laying down`)
+    }
 
-  shake() {
-    console.log(`Dog with length ${this.length}, is shaking!`);
-  }
+    shake() {
+        console.log(`${this.name} is shaking`)
+    }
 
-  come() {
-    console.log(`Dog with weight ${this.weigth}, is coming!`);
-  }
+    come() {
+        console.log(`${this.name} is coming`)
+    }
 }
 
-const bobby = new Dog("Red", "Black", 17, 35, 50); // instance / object
-bobby.come();
+const heli = new Dog("Heli", "Red", "Blue", 50, 100, 20)
+heli.sit()

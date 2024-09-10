@@ -1,19 +1,16 @@
-// janji untuk bayar hutang
+// promise
+// resolved => ditepati, 
+// rejected => tidak ditepati, 
+// pending => menunggu status
 
-const bayarHutang = new Promise((resolve, reject) => {
-  const sudahBayarHutang = false;
+const janji = new Promise((resolve, reject) => {
+    const isPay = true 
+    
+    if(isPay) return resolve("Sudah bayar hutang!")
+        
+    reject("Galbay hutang!")
+})
 
-  if (sudahBayarHutang) {
-    resolve("Yeay kamu sudah bayar hutang, kamu keren!");
-  } else {
-    reject("Hey, kamu belum bayar hutang!");
-  }
-});
-
-bayarHutang
-  .then((value) => {
-    console.log(value);
-  })
-  .catch((reason) => {
-    console.log(reason);
-  }); // error handling
+janji
+.then((value) => console.log(value))
+.catch((error) => console.log(error))

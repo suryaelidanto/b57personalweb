@@ -1,39 +1,39 @@
-function sendEmail(event) {
-  event.preventDefault();
+function submitData(event) {
+    event.preventDefault()
 
-  const inputName = document.getElementById("name").value;
-  const inputEmail = document.getElementById("email").value;
-  const inputPhoneNumber = document.getElementById("phoneNumber").value;
-  const inputSubject = document.getElementById("subject").value;
-  const inputMessage = document.getElementById("message").value;
+    const name = document.getElementById("name").value
+    const email = document.getElementById("email").value
+    const phoneNumber = document.getElementById("phoneNumber").value
+    const subject = document.getElementById("subject").value
+    const message = document.getElementById("message").value
 
-  if (!inputName.length) {
-    return alert(`Nama tidak boleh kosong!`);
-  } else if (!inputEmail.length) {
-    return alert(`Email tidak boleh kosong!`);
-  } else if (!inputPhoneNumber.length) {
-    return alert(`Phone Number tidak boleh kosong!`);
-  } else if (!inputSubject.length) {
-    return alert(`Subject tidak boleh kosong!`);
-  } else if (!inputMessage.length) {
-    return alert(`Message tidak boleh kosong!`);
-  }
+    // alert(`${name}\n${email}\n${phoneNumber}\n${subject}\n${message}`)
 
-  //   alert(
-  //     `Name: ${inputName}\nEmail: ${inputEmail}\nPhone Number: ${inputPhoneNumber}\nSubject: ${inputSubject}\nMessage: ${inputMessage}`
-  //   );
-  const link = document.createElement("a");
-  link.href = `mailto:${inputEmail}?subject=${inputSubject}&body=Nama: ${inputName}\nNomor HP: ${inputPhoneNumber}\nMessage: ${inputMessage}`;
+    if (name == "") {
+        return alert("name harus diisi")
+    } else if (email == "") {
+        return alert("email harus diisi")
+    } else if (phoneNumber == "") {
+        return alert("phone number harus diisi")
+    } else if (subject == "") {
+        return alert("subject harus diisi")
+    } else if (message == "") {
+        return alert("message harus diisi")
+    }
 
-  link.click();
+    console.log(name)
+    console.log(email)
+    console.log(phoneNumber)
+    console.log(subject)
+    console.log(message)
 
-  const contact = {
-    name: inputName,
-    email: inputEmail,
-    phoneNumber: inputPhoneNumber,
-    subject: inputSubject,
-    message: inputMessage,
-  };
 
-  console.log(contact);
+
+    // programtically link
+    let a = document.createElement('a')
+
+    a.href = `mailto:${email}?subject=${subject}&body=${encodeURIComponent(message)}`
+
+    a.click()
+
 }

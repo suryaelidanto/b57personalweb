@@ -1,7 +1,7 @@
-console.log("hello 1");
+// console.log("Hello 1")
 
-setTimeout(() => {
-  console.log("hello 2");
-}, 3000);
+// setTimeout(() => {
+//     console.log("Hello 3")
+// }, 3000)
 
-console.log("hello 3");
+// console.log("Hello 2")

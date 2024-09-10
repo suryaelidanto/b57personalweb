@@ -1,96 +1,99 @@
 <!doctype html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
-    <style>
-      *,
-      body {
-        margin: 0;
-      }
-
-      .skill {
-        display: flex;
-        flex-direction: row;
-        margin-top: 30px;
-      }
-
-      .social-media {
-        margin-top: 50px;
-      }
-
-      .social-media i {
-        margin-right: 20px;
-        font-size: 30px;
-      }
-
-      .container {
-        display: flex;
-        flex-direction: row;
-        margin: 75px;
-      }
-
-      @media screen and (max-width: 768px) {
-        .container {
-          flex-direction: column;
-        }
-
-        .right {
-          margin-top: 50px;
-        }
-
-        .skill {
-          flex-direction: column;
-        }
-      }
-    </style>
+    <title>B57 - Project Portfolio</title>
+    <link
+      rel="stylesheet"
+      href="../assets/css/index.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/css/nav.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/css/home.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width; initial-scale=1.0"
+    />
   </head>
+
   <body>
-    <nav>
-      <ul
-        style="
-          padding: 20px;
-          background-color: gray;
-          list-style-type: none;
-          display: flex;
-          flex-direction: row;
-          gap: 20px;
-          align-items: center;
-        "
-      >
-        <li>
-          <img
-            src="https://dumbways.id/assets/images/brandred.png"
-            style="width: 50px; height: 25px; object-fit: contain"
-          />
-        </li>
-        <li>
-          <a href="/" style="text-decoration: none"> Home </a>
-        </li>
-        <li>
-          <a href="/blog" style="text-decoration: none"> Blog </a>
-        </li>
-        <li style="display: flex; width: 100%; justify-content: flex-end">
-          <a
-            href="/contact"
-            style="
-              background-color: orangered;
-              padding: 20px;
-              color: white;
-              border-radius: 10px;
-              text-decoration: none;
-            "
-            >Contact Me</a
+    <nav class="navbar">
+      <ul class="navbar-ul">
+        <div class="navbar-left">
+          <li>
+            <img
+              src="../assets/img/dumbways.png"
+              class="navbar-logo"
+            />
+          </li>
+          <li>
+            <a
+              href="/"
+              class="navbar-link active"
+            >
+              Home
+            </a>
+          </li>
+          <li>
+            <a
+              href="/blog"
+              class="navbar-link"
+            >
+              Blog
+            </a>
+          </li>
+        </div>
+        <div class="navbar-right">
+          <li>
+            <a
+              href="/contact"
+              class="navbar-contact-btn"
+            >
+              Contact
+            </a>
+          </li>
+          <button
+            id="hamburger-button"
+            onclick="toggleHamburger()"
           >
-        </li>
+            <i class="fa-solid fa-bars fa-2x"></i>
+          </button>
+        </div>
       </ul>
     </nav>
+    <div class="hamburger-container hide">
+      <a
+        href="/"
+        class="hamburger-nav-link hamburger-active"
+      >
+        Home
+      </a>
+      <a
+        href="/blog"
+        class="hamburger-nav-link"
+      >
+        Blog
+      </a>
+      <a
+        href="/contact"
+        class="hamburger-nav-link"
+      >
+        Contact
+      </a>
+    </div>
 
     <section class="container">
       <div class="left">
         <img
-          src="https://images.pexels.com/photos/874158/pexels-photo-874158.jpeg"
+          src="../assets/img/naruto.jpg"
           alt="Ini tuh gambar naruto bro"
           style="
             width: 100%;
@@ -104,7 +107,10 @@
           Saya adalah seorang Fullstack Developer. Saya memiliki pengalaman di
           bidang pemrograman selama kurang lebih 5 tahun.
         </p>
-        <table border="1" style="width: 100%">
+        <table
+          border="1"
+          style="width: 100%"
+        >
           <tr>
             <th>Experience</th>
             <th>Year</th>
@@ -129,14 +135,22 @@
 
         <div class="skill">
           <div>
-            <img src="images/logo.png" alt="" srcset="" />
+            <img
+              src="images/logo.png"
+              alt=""
+              srcset=""
+            />
             <h2>Javascript</h2>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, ea!
             </p>
           </div>
           <div>
-            <img src="images/logo.png" alt="" srcset="" />
+            <img
+              src="images/logo.png"
+              alt=""
+              srcset=""
+            />
             <h2>Github</h2>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, ea!
@@ -144,7 +158,11 @@
           </div>
 
           <div>
-            <img src="images/logo.png" alt="" srcset="" />
+            <img
+              src="images/logo.png"
+              alt=""
+              srcset=""
+            />
             <h2>Deployment</h2>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, ea!
@@ -160,5 +178,7 @@
         </div>
       </div>
     </section>
+
+    <script src="./assets/js/nav.js"></script>
   </body>
 </html>

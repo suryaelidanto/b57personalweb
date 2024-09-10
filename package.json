@@ -1,12 +1,12 @@
 {
-  "name": "b57personalweb",
+  "name": "stage1",
   "version": "1.0.0",
-  "description": "Ini adalah project personal website pertama saya :D",
+  "description": "personal web dumbways.id",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js"
   },
-  "author": "surya",
+  "author": "suryaelidanto",
   "license": "ISC",
   "dependencies": {
     "express": "^4.19.2",

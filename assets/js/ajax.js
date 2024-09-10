@@ -4,100 +4,62 @@ function getTestimonialData(url) {
 
     xhr.open("GET", url, true);
 
-    xhr.onerror = () => {
-      reject("Network Error!");
-    };
-
     xhr.onload = () => {
       resolve(JSON.parse(xhr.responseText));
+    };
+
+    xhr.onerror = () => {
+      reject("Network Error!");
     };
 
     xhr.send();
   });
 }
 
-async function getAllTestimonials() {
+async function allTestimonial() {
   const testimonials = await getTestimonialData(
-    "https://api.npoint.io/325670a0ea8fb06fe0df"
+    "https://api.npoint.io/866829d0e4851e873f3a"
   );
+
+  if (!testimonials.length) {
+    return (document.getElementById("testimonials").innerHTML =
+      `<h1>Data not found!</h1>`);
+  }
 
   const testimonialHTML = testimonials.map((testimonial) => {
     return `<div class="testimonial">
-    <img src="${testimonial.image}" class="profile-testimonial" />
-    <p class="quote">"${testimonial.content}"</p>
-    <p class="author">- ${testimonial.author}</p>
-    <p class="author">${testimonial.rating} <i class="fa-solid fa-star"></i></p>
-</div>`;
+                  <img src="${testimonial.image}" class="profile-testimonial" />
+                  <p class="quote">"${testimonial.content}"</p>
+                  <p class="author">- ${testimonial.author}</p>
+              </div>`;
   });
 
   document.getElementById("testimonials").innerHTML = testimonialHTML.join("");
 }
 
-async function getTestimonialsByRating(rating) {
+async function filterTestimonial(rating) {
   const testimonials = await getTestimonialData(
-    "https://api.npoint.io/325670a0ea8fb06fe0df"
+    "https://api.npoint.io/866829d0e4851e873f3a"
   );
 
-  const filteredTestimonials = testimonials.filter((testimonial) => {
-    if (testimonial.rating === rating) {
-      return true;
-    }
-  });
+  const filteredTestimonial = testimonials.filter(
+    (testimonial) => testimonial.rating == rating
+  );
 
-  const testimonialHTML = filteredTestimonials.map((testimonial) => {
+  if (!filteredTestimonial.length) {
+    return (document.getElementById("testimonials").innerHTML =
+      `<h1>Data not found!</h1>`);
+  }
+
+  const testimonialHTML = filteredTestimonial.map((testimonial) => {
     return `<div class="testimonial">
-    <img src="${testimonial.image}" class="profile-testimonial" />
-    <p class="quote">"${testimonial.content}"</p>
-    <p class="author">- ${testimonial.author}</p>
-    <p class="author">${testimonial.rating} <i class="fa-solid fa-star"></i></p>
-</div>`;
+                      <img src="${testimonial.image}" class="profile-testimonial" />
+                      <p class="quote">"${testimonial.content}"</p>
+                      <p class="author">- ${testimonial.author}</p>
+                  </div>`;
   });
 
   document.getElementById("testimonials").innerHTML = testimonialHTML.join("");
 }
 
-getAllTestimonials();
-
-const buttonRatings = [
-  {
-    name: "All",
-    rating: "all",
-  },
-  {
-    name: "1",
-    rating: 1,
-  },
-  {
-    name: "2",
-    rating: 2,
-  },
-  {
-    name: "3",
-    rating: 3,
-  },
-  {
-    name: "4",
-    rating: 4,
-  },
-  {
-    name: "5",
-    rating: 5,
-  },
-];
-
-function showButtonRatings() {
-  const buttonRatingsHTML = buttonRatings.map((buttonRating) => {
-    if (buttonRating.name === "All") {
-      return `<button onclick="getAllTestimonials()" class="rating-btn">${buttonRating.name}</button>`;
-    } else {
-      return `<button onclick="getTestimonialsByRating(${buttonRating.rating})" class="rating-btn">
-            ${buttonRating.name} <i class="fa-solid fa-star"></i>
-          </button>`;
-    }
-  });
-
-  document.getElementById("button-ratings").innerHTML =
-    buttonRatingsHTML.join("");
-}
-
-showButtonRatings();
+allTestimonial();

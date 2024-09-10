@@ -1,34 +1,22 @@
 class Animal {
-  brain = true;
-  legs = 0;
+    brain  = true
+    legs = 0
 }
 
 class Human extends Animal {
-  legs = 2;
-  skinColor = "white";
+    legs = 2
+    eyesCount = 2 
 }
 
 class Pet extends Animal {
-  brain = false;
-  legs = 4;
-  fleas = 0;
+    legs = 4
+    fleas = 0 
 }
 
 class Dog extends Pet {
-  fleas = 8;
-
-  goof() {
-    console.log("miawww");
-  }
+    fleas = 8
 }
 
 class Cat extends Pet {
-  fleas = 4;
-
-  miaw() {
-    console.log("miawww");
-  }
+    fleas = 4
 }
-
-const anto = new Dog();
-anto.goof();

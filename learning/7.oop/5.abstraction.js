@@ -1,28 +1,24 @@
 class Phone {
-  constructor(name, battery, signal) {
-    this.name = name;
-    this.battery = battery;
-    this.signal = signal;
-  }
+    name = ""
+    battery = 0
+    screen = 0
+    signal = 0
 
-  connectWifi() {
-    // logic koneksi ke wifi
-    if (this.signal >= 50 && this.battery > 5) {
-      // konek ke wifi berhasil
-      this._wifiConnectSuccess();
-    } else {
-      this._wifiConnectFailed();
+    constructor(name) {
+        this.name = name
     }
-  }
 
-  _wifiConnectSuccess() {
-    console.log("Berhasil konek ke wifi!");
-  }
+    connectWifi() {
+        // logic konek ke wifi
+        if(this.signal > 50 && this.battery > 5) {
+            wifiConnectSuccess()
+        }
+    }
 
-  _wifiConnectFailed() {
-    console.log("Gagal konek ke wifi!");
-  }
+    wifiConnectSuccess() {
+        // 
+    }
 }
 
-const apple = new Phone("I Phone 15", 10, 50);
-apple.connectWifi();
+const apple = new Phone("I Phone")
+apple.connectWifi()
