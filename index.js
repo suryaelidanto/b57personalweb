@@ -2,6 +2,10 @@ const express = require("express");
 const app = express();
 const port = 5000;
 const path = require("path");
+const config = require("./config/config");
+const { Sequelize, QueryTypes } = require("sequelize");
+
+const sequelize = new Sequelize(config.development);
 
 // app.set = setting variable global, configuration, dll
 app.set("view engine", "hbs");
@@ -47,8 +51,11 @@ function home(req, res) {
   res.render("index");
 }
 
-function blog(req, res) {
-  res.render("blog", { data: data });
+async function blog(req, res) {
+  const query = `SELECT * FROM public.blogs`;
+  const result = await sequelize.query(query, { type: QueryTypes.SELECT });
+
+  res.render("blog", { data: result });
 }
 
 function deleteBlog(req, res) {
