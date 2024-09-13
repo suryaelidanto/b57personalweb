@@ -69,6 +69,21 @@
   align-items: center;
 }
 
+.active {
+  color: orangered !important;
+  font-weight: bold;
+}
+.btn-warning {
+  background-color: orangered;
+  color: white;
+  font-weight: bold;
+}
+.btn-secondary {
+  background-color: #dbdbdb;
+  color: black;
+  font-weight: bold;
+}
+
 @media only screen and (max-width: 600px) {
   .navbar-link {
     display: none;
