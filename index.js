@@ -5,6 +5,10 @@ const path = require("path");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
 const flash = require("express-flash");
+const { Sequelize, QueryTypes } = require("sequelize");
+const config = require("./config/config.json");
+
+const sequelize = new Sequelize(config.development);
 
 const blogModel = require("./models").blog;
 const userModel = require("./models").user;
@@ -115,7 +119,15 @@ function home(req, res) {
 }
 
 async function blog(req, res) {
-  const result = await blogModel.findAll();
+  // const result = await blogModel.findAll({
+  //   include: userModel,
+  // });
+  const query = `SELECT public.blogs.*, public.users.name AS username FROM public.blogs INNER JOIN public.users 
+	ON public.blogs."userId" = public.users.id;`;
+  const result = await sequelize.query(query, { type: QueryTypes.SELECT });
+
+  console.log("isi result", result);
+
   const user = req.session.user;
 
   res.render("blog", { data: result, user });
