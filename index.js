@@ -7,6 +7,7 @@ const session = require("express-session");
 const flash = require("express-flash");
 const { Sequelize, QueryTypes } = require("sequelize");
 const config = require("./config/config.json");
+const upload = require("./middlewares/upload-file");
 
 const sequelize = new Sequelize(config.development);
 
@@ -17,6 +18,8 @@ app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "./views"));
 
 app.use("/assets", express.static(path.join(__dirname, "./assets")));
+app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
+
 app.use(express.urlencoded({ extended: false }));
 app.use(
   session({
@@ -34,7 +37,7 @@ app.use(flash());
 app.get("/", home);
 app.get("/blog", blog);
 app.get("/add-blog", addBlogView);
-app.post("/blog", addBlog);
+app.post("/blog", upload.single("image"), addBlog);
 app.get("/delete-blog/:id", deleteBlog);
 app.get("/edit-blog/:id", editBlogView);
 app.post("/edit-blog/:id", editBlog);
@@ -119,14 +122,9 @@ function home(req, res) {
 }
 
 async function blog(req, res) {
-  // const result = await blogModel.findAll({
-  //   include: userModel,
-  // });
   const query = `SELECT public.blogs.*, public.users.name AS username FROM public.blogs INNER JOIN public.users 
 	ON public.blogs."userId" = public.users.id;`;
   const result = await sequelize.query(query, { type: QueryTypes.SELECT });
-
-  console.log("isi result", result);
 
   const user = req.session.user;
 
@@ -154,11 +152,14 @@ async function deleteBlog(req, res) {
 
 async function addBlog(req, res) {
   const { title, content } = req.body;
+  const imagePath = req.file.path;
+  const userId = req.session.user.id;
+
   await blogModel.create({
     title: title,
     content: content,
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPeWWU4427WFoUfLn-QiJGLoiIllli8ez1Tw&s",
+    image: imagePath,
+    userId: userId,
   });
 
   res.redirect("/blog");
@@ -199,6 +200,12 @@ async function editBlog(req, res) {
 }
 
 function addBlogView(req, res) {
+  const user = req.session.user
+
+  if(!user) {
+    return res.redirect("/login")
+  }
+
   res.render("add-blog");
 }
 
@@ -217,8 +224,6 @@ async function blogDetail(req, res) {
       id: id,
     },
   });
-
-  console.log("detail", result);
 
   if (!result) return res.render("not-found");
   res.render("blog-detail", { data: result });
