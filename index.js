@@ -122,9 +122,16 @@ function home(req, res) {
 }
 
 async function blog(req, res) {
-  const query = `SELECT public.blogs.*, public.users.name AS username FROM public.blogs INNER JOIN public.users 
-	ON public.blogs."userId" = public.users.id;`;
-  const result = await sequelize.query(query, { type: QueryTypes.SELECT });
+  // const query = `SELECT public.blogs.*, public.users.name AS username FROM public.blogs INNER JOIN public.users
+  // ON public.blogs."userId" = public.users.id;`;
+  // const result = await sequelize.query(query, { type: QueryTypes.SELECT });
+  const result = await blogModel.findAll({
+    include: [
+      {
+        model: userModel,
+      },
+    ],
+  });
 
   const user = req.session.user;
 
@@ -200,10 +207,10 @@ async function editBlog(req, res) {
 }
 
 function addBlogView(req, res) {
-  const user = req.session.user
+  const user = req.session.user;
 
-  if(!user) {
-    return res.redirect("/login")
+  if (!user) {
+    return res.redirect("/login");
   }
 
   res.render("add-blog");
